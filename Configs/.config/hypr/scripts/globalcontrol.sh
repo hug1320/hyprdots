@@ -2,10 +2,10 @@
 
 # wallpaper var
 EnableWallDcol=0
-ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"
+ConfDir="$HOME/.config"
 CloneDir="$HOME/Hyprdots"
 ThemeCtl="$ConfDir/hypr/theme.ctl"
-cacheDir="$HOME/.cache/hyprdots"
+cacheDir="$ConfDir/swww/.cache"
 
 # theme var
 gtkTheme=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`

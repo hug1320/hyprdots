@@ -21,7 +21,7 @@ dunst
 rofi-lbonn-wayland-git
 waybar
 swww
-swaylock-effects-git
+swaylock-effects
 wlogout
 grimblast-git
 hyprpicker-git
@@ -49,10 +49,7 @@ kitty
 neofetch
 dolphin
 visual-studio-code-bin
-vim
+neovim
 ark
-eza|zsh
-oh-my-zsh-git|zsh
-zsh-theme-powerlevel10k|zsh oh-my-zsh-git
-pokemon-colorscripts-git|zsh
-hyprdots-ctl
+lsd
+fish

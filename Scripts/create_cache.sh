@@ -6,7 +6,7 @@
 
 source global_fn.sh
 if [ $? -ne 0 ] ; then
-    echo "Error: unable to source global_fn.sh, please execute from $(dirname "$(realpath "$0")")..."
+    echo "Error: unable to source global_fn.sh, please execute from $(dirname $(realpath $0))..."
     exit 1
 fi
 
@@ -17,9 +17,9 @@ then
 fi
 
 # set variables
-ctlFile="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/theme.ctl"
+ctlFile="$HOME/.config/hypr/theme.ctl"
 ctlLine=`grep '^1|' $ctlFile`
-export cacheDir="$HOME/.cache/hyprdots"
+export cacheDir="$HOME/.config/swww/.cache"
 
 # evaluate options
 while getopts "fc" option ; do
@@ -36,7 +36,7 @@ while getopts "fc" option ; do
         if [[ -f "${inWall}" ]] ; then
             if [ `echo "$ctlLine" | wc -l` -eq "1" ] ; then
                 curTheme=$(echo "$ctlLine" | cut -d '|' -f 2)
-                awk -F '|' -v thm="${curTheme}" -v wal="${inWall}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ctlFile}" > /tmp/t2 && mv /tmp/t2 "${ctlFile}"
+                awk -F '|' -v thm="${curTheme}" -v wal="${inWall}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ThemeCtl}" > /tmp/t2 && mv /tmp/t2 "${ThemeCtl}"
             else
                 echo "ERROR : $ctlFile Unable to fetch theme..."
                 exit 1
@@ -104,13 +104,13 @@ imagick_t2 () {
             if dark_light "#${dcol[j]}" ; then
                 for t in 30 50 70 90 ; do
                     z=$(( z + 1 ))
-                    r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 200,"$(awk "BEGIN {print $t * 1.5}")",$(( 100 - (2*z) )) -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
+                    r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 200,"$(awk "BEGIN {print $t * 1.5}")" -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
                     echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${cacheDir}/${theme}/${wpBaseName}.dcol"
                 done
             else
                 for t in 15 35 55 75 ; do
                     z=$(( z + 1 ))
-                    r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 80,"$(awk "BEGIN {print $t * 1.5}")",$(( 100 + (2*z) )) -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
+                    r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 80,"$(awk "BEGIN {print $t * 1.5}")" -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
                     echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${cacheDir}/${theme}/${wpBaseName}.dcol"
                 done
             fi
@@ -135,7 +135,7 @@ do
     if [ ! -z "$(echo $ctlLine | awk -F '|' '{print $3}')" ] ; then
         codex=$(echo $ctlLine | awk -F '|' '{print $3}' | cut -d '~' -f 1)
         if [ $(code --list-extensions |  grep -iwc "${codex}") -eq 0 ] ; then
-            code --install-extension "${codex}" 2> /dev/null
+            code --install-extension "${codex}"
         fi
     fi
 done < $ctlFile

@@ -33,14 +33,12 @@ For Debian, please refer **Senshi111**'s version [here](https://github.com/Sensh
 Checkout **Ksk**'s [video](https://www.youtube.com/watch?v=mb8h1-LB9K0) for full installation walkthrough.
 
 > [!IMPORTANT]
-> Install script will auto-detect nvidia card and install nvidia-dkms drivers for your kernel.
-> So please ensure that your Nvidia card supports [dkms](https://wiki.archlinux.org/title/NVIDIA) drivers and hyprland.
+> Install script will auto-detect nvidia card and install nvidia drivers for your kernel.
 
 > [!CAUTION]
-> The script modifies your grub config to enable Nvidia drm and theme.
-> This script is also designed to be done after a minimal arch installation, using it on previously installed desktop should work but will change whatever you currently have (gtk/qt theming, shell, sddm, grub, etc) and is at your own risk.
+> The script modifies your grub config to enable Nvidia drm and theme
 
-After a minimal Arch install (with grub and systemd), clone and execute -
+After minimal Arch install (with grub and systemd), clone and execute -
 
 ```shell
 pacman -Sy git
@@ -57,19 +55,6 @@ cd ~/Hyprdots/Scripts
 
 Please reboot after the install script completes and takes you to sddm login screen (or black screen) for the first time.
 For more details, please refer [installation wiki](https://github.com/prasanthrangan/hyprdots/wiki/Installation)
-
-### Updating
-To update Hyprdots you will need to pull the latest changes from github and restore the configs by doing -
-
-```shell
-cd ~/Hyprdots/Scripts
-git pull
-./install.sh -r
-```
-
-> [!IMPORTANT]
-> This backs up and overwrites all configs as setup by `restore_cfg.lst` in ~/Hyprdots/Scripts.
-> So please note that any configurations you made may be overwritten if listed to be done so, but can be recovered in ~/.config/cfg_backups.
 
 
 <div align = right> <br><br>
@@ -185,7 +170,6 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 | ![Game Launchers#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_2.png) |
 | ![Game Launchers#3](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_3.png) |
 | ![Game Launchers#4](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_4.png) |
-| ![Game Launchers#5](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_5.png) |
 
 
 <div align = right> <br><br>
@@ -200,7 +184,7 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
     <tr><td>linux-headers</td><td>for main kernel (script will auto detect from /usr/lib/modules/)</td></tr>
     <tr><td>linux-zen-headers</td><td>for zen kernel (script will auto detect from /usr/lib/modules/)</td></tr>
     <tr><td>linux-lts-headers</td><td>for lts kernel (script will auto detect from /usr/lib/modules/)</td></tr>
-    <tr><td>nvidia-dkms</td><td>nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")</td></tr>
+    <tr><td>nvidia</td><td>nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")</td></tr>
     <tr><td>nvidia-utils</td><td>nvidia utils (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")</td></tr></table>
 </td></tr></table>
 
@@ -232,7 +216,7 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 
 <table><tr><td>
 <code>h</code><br><code>y</code><br><code>p</code><br><code>r</code></td><td><table>
-    <tr><td>hyprland-git</td><td>main window manager (hyprland-nvidia-git if nvidia card is detected)</td></tr>
+    <tr><td>hyprland</td><td>main window manager (hyprland-nvidia if nvidia card is detected)</td></tr>
     <tr><td>dunst</td><td>graphical notification daemon</td></tr>
     <tr><td>rofi-lbonn-wayland-git</td><td>app launcher</td></tr>
     <tr><td>waybar-hyprland-git</td><td>status bar</td></tr>
@@ -285,8 +269,7 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
     <tr><td>zsh</td><td>main shell</td></tr>
     <tr><td>eza</td><td>colorful file lister</td></tr>
     <tr><td>oh-my-zsh-git</td><td>for zsh plugins</td></tr>
-    <tr><td>zsh-theme-powerlevel10k-git</td><td>theme for zsh</td></tr>
-    <tr><td>pokemon-colorscripts-git</td><td>display pokemon sprites</td></tr></table>
+    <tr><td>zsh-theme-powerlevel10k</td><td>theme for zsh</td></tr>
 </td></tr></table>
 
 
@@ -322,7 +305,6 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 | <kbd>Super</kbd> + <kbd>K</kbd> | switch keyboard layout
 | <kbd>Super</kbd> + <kbd>P</kbd> | drag to select area or click on a window to print
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd> | print current screen
-| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>P</kbd> | print current screen (frozen)
 | <kbd>Super</kbd> + <kbd>RightClick</kbd> | resize the window
 | <kbd>Super</kbd> + <kbd>LeftClick</kbd> | change the window position
 | <kbd>Super</kbd> + <kbd>MouseScroll</kbd> | cycle through workspaces

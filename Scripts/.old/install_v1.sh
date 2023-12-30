@@ -9,7 +9,7 @@
 #--------------------------------#
 source global_fn.sh
 if [ $? -ne 0 ] ; then
-    echo "Error: unable to source global_fn.sh, please execute from $(dirname "$(realpath "$0")")..."
+    echo "Error: unable to source global_fn.sh, please execute from $(dirname $(realpath $0))..."
     exit 1
 fi
 
@@ -34,8 +34,8 @@ if [ `lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l` -gt 0 ] ; the
         echo "${krnl}-headers" >> install_pkg.lst
     done
 
-    echo -e "nvidia-dkms\nnvidia-utils" >> install_pkg.lst
-    sed -i "s/^hyprland-git/hyprland-nvidia-git/g" install_pkg.lst
+    echo -e "nvidia\nnvidia-utils" >> install_pkg.lst
+    sed -i "s/^hyprland/hyprland-nvidia/g" install_pkg.lst
 
 else
     echo "nvidia card not detected, skipping nvidia drivers..."
