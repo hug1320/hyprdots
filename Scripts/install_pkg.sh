@@ -19,10 +19,10 @@ aurhPkg=()
 ofs=$IFS
 IFS='|'
 
-while read pkg
+while read -r pkg deps
 do
-    if [ -z $pkg ]
-        then
+    pkg="${pkg// /}"
+    if [ -z "${pkg}" ] ; then
         continue
     fi
 
