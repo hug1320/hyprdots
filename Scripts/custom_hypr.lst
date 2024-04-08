@@ -30,6 +30,7 @@ rofi-lbonn-wayland-git                                 # application launcher
 waybar                                                 # system bar
 swww                                                   # wallpaper
 hyprlock                                               # lock screen
+hypridle                                               # idle manager
 wlogout                                                # logout menu
 grimblast-git                                          # screenshot tool
 hyprpicker                                             # color picker
