@@ -29,7 +29,7 @@ dunst                                                  # notification daemon
 rofi-lbonn-wayland-git                                 # application launcher
 waybar                                                 # system bar
 swww                                                   # wallpaper
-swaylock-effects-git                                   # lock screen
+hyprlock                                               # lock screen
 wlogout                                                # logout menu
 grimblast-git                                          # screenshot tool
 hyprpicker                                             # color picker
@@ -66,7 +66,7 @@ firefox                                                # browser
 kitty                                                  # terminal
 dolphin                                                # kde file manager
 ark                                                    # kde file archiver
-vim                                                    # terminal text editor
+neovim                                                    # terminal text editor
 visual-studio-code-bin                                 # ide text editor
 
 
@@ -77,7 +77,6 @@ zsh-theme-powerlevel10k|zsh oh-my-zsh-git              # theme for zsh
 lsd|fish                                               # file lister for fish
 starship|fish                                          # customizable shell prompt
 neofetch                                               # fetch tool
-pokemon-colorscripts-git|zsh                           # display pokemon sprites
 
 
 # --------------------------------------------------- // Hyprdots

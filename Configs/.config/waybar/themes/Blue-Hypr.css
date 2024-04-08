@@ -1,0 +1,148 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: hack Nerd Font;
+  font-size: 12px;
+}
+
+window#waybar {
+  background: transparent;
+  color: white;
+  padding: 0;
+  margin: 0;
+}
+
+tooltip {
+	background: #0f0f0f;
+	border-radius: 15px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #262626;
+}
+
+#workspaces button {
+  padding: 0px 12px;
+  color: #f0f0f0;
+  border-radius: 5rem;
+}
+
+#workspaces button.active{
+  color: #0f0f0f;
+  background-color: #f0f0f0;
+  border-radius: 50px;
+}
+
+#workspaces button.urgent {
+  color: #0f0f0f;
+  background-color: #fab387;
+}
+
+#workspaces button:hover {
+	background-color: #f0f0f0;
+	color: #0f0f0f;
+}
+
+.modules-left, #custom-date, #custom-powermenu, #bluetooth, #idle_inhibitor, #clock, #battery, #pulseaudio, #network,  #tray, #backlight {
+	background-color: #272a34;
+	padding: 0px 5px;
+	margin: 8px 0px 0px 0px;
+	opacity: 0.8;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#272a34, #272a34) padding-box,
+    linear-gradient(to bottom, #33ccff, #00ff99) border-box;
+}
+
+.modules-left {
+  padding: 0;
+  border-radius: 5rem;
+  margin-left: 8px;
+}
+
+#custom-notification {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+#bluetooth {
+	border-radius: 50px 0px 0px 50px;
+	margin-left: 20px;
+	padding-left: 15px;
+  border-right: 0px;
+}
+
+#custom-date {
+	color: #9ec3c4;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+#custom-powermenu {
+	color: #f38ba8;
+	border-radius: 0px 50px 50px 0px;
+  margin-right: 8px;
+  padding-right: 10px;
+  border-left: 0px;
+}
+
+#idle_inhibitor {
+  color: #cba6f7;
+  border-radius: 50px 0 0 50px;
+  border-right: 0px;
+  padding-left: 20px;
+}
+
+#clock {
+  color: #cba6f7;
+  border-left: 0px;
+  border-radius: 0 50px 50px 0;
+  padding-right: 20px;
+}
+
+#backlight {
+  color: #f9e2af;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+#battery {
+  color: #a6e3a1;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+#battery.charging {
+  color: #89dceb;
+}
+
+#battery.warning:not(.charging) {
+  background: 
+    linear-gradient(#fab387, #fab387) padding-box,
+    linear-gradient(to bottom, #33ccff, #00ff99) border-box;
+
+  color: #0f0f0f;
+}
+
+#battery.critical:not(.charging) {
+ background: 
+    linear-gradient(#ff5633,#ff5633) padding-box,
+    linear-gradient(to bottom, #33ccff, #00ff99) border-box;
+  color: #0f0f0f;
+}
+
+#network {
+  color: #cdd6f4;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+#pulseaudio {
+	color: #89b4fa;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+#tray{
+  border-left: 0px;
+  border-right: 0px;
+}
