@@ -20,24 +20,26 @@ if [ ! -f "${CfgLst}" ] || [ ! -d "${CfgDir}" ] ; then
     exit 1
 fi
 
-BkpDir="${HOME}/.config/$(date +'cfg_%y%m%d_%Hh%Mm%Ss')"
+BkpDir="${HOME}/.config/cfg_backups/$(date +'%y%m%d_%Hh%Mm%Ss')"
 
-if [ -d $BkpDir ] ; then
-    echo "ERROR : $BkpDir exists!"
+if [ -d "${BkpDir}" ] ; then
+    echo "ERROR : ${BkpDir} exists!"
     exit 1
 else
-    mkdir -p $BkpDir
+    mkdir -p "${BkpDir}"
 fi
 
 cat "${CfgLst}" | while read lst
 do
 
-    bkpFlag=`echo $lst | awk -F '|' '{print $1}'`
-    eval pth=`echo $lst | awk -F '|' '{print $2}'`
-    cfg=`echo $lst | awk -F '|' '{print $3}'`
-    pkg=`echo $lst | awk -F '|' '{print $4}'`
+    ovrWrte=`echo "${lst}" | awk -F '|' '{print $1}'`
+    bkpFlag=`echo "${lst}" | awk -F '|' '{print $2}'`
+    pth=`echo "${lst}" | awk -F '|' '{print $3}'`
+    pth=`eval echo "${pth}"`
+    cfg=`echo "${lst}" | awk -F '|' '{print $4}'`
+    pkg=`echo "${lst}" | awk -F '|' '{print $5}'`
 
-    while read pkg_chk
+    while read -r pkg_chk
     do
         if ! pkg_installed "${pkg_chk}"
             then
@@ -46,24 +48,24 @@ do
         fi
     done < <( echo "${pkg}" | xargs -n 1 )
 
-    echo "${cfg}" | xargs -n 1 | while read cfg_chk
+    echo "${cfg}" | xargs -n 1 | while read -r cfg_chk
     do
-        tgt=`echo $pth | sed "s+^${HOME}++g"`
-        if [[ -z "$pth" ]]; then continue ; fi #Added this if cfg.lst have blank lines
+        if [[ -z "${pth}" ]]; then continue; fi
+        tgt=`echo "${pth}" | sed "s+^${HOME}++g"`
 
-        if ( [ -d $pth/$cfg_chk ] || [ -f $pth/$cfg_chk ] ) && [ "${bkpFlag}" == "Y" ]
+        if ( [ -d "${pth}/${cfg_chk}" ] || [ -f "${pth}/${cfg_chk}" ] ) && [ "${bkpFlag}" == "Y" ]
             then
 
-            if [ ! -d $BkpDir$tgt ] ; then
-                mkdir -p $BkpDir$tgt
+            if [ ! -d "${BkpDir}${tgt}" ] ; then
+                mkdir -p "${BkpDir}${tgt}"
             fi
 
             [ "${ovrWrte}" == "Y" ] && mv "${pth}/${cfg_chk}" "${BkpDir}${tgt}" || cp -r "${pth}/${cfg_chk}" "${BkpDir}${tgt}"
             echo -e "\033[0;34m[backup]\033[0m ${pth}/${cfg_chk} --> ${BkpDir}${tgt}..."
         fi
 
-        if [ ! -d $pth ] ; then
-            mkdir -p $pth
+        if [ ! -d "${pth}" ] ; then
+            mkdir -p "${pth}"
         fi
 
         if [ ! -f "${pth}/${cfg_chk}" ] ; then
@@ -79,11 +81,7 @@ do
 
 done
 
-touch ${HOME}/.config/hypr/monitors.conf
-touch ${HOME}/.config/hypr/userprefs.conf
-
 if nvidia_detect && [ $(grep '^source = ~/.config/hypr/nvidia.conf' ${HOME}/.config/hypr/hyprland.conf | wc -l) -eq 0 ] ; then
-    cp ${CfgDir}/.config/hypr/nvidia.conf ${HOME}/.config/hypr/nvidia.conf
     echo -e 'source = ~/.config/hypr/nvidia.conf # auto sourced vars for nvidia\n' >> ${HOME}/.config/hypr/hyprland.conf
 fi
 
